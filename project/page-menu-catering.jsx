@@ -66,6 +66,22 @@ const MENU = [
     ],
   },
   {
+    id: "high-tea",
+    title: "High Tea",
+    italic: "vanaf 2 personen",
+    sub: "Geniet van een heerlijke middag bijkletsen. Geserveerd in drie gangen: huisgemaakt soepje met mini toasty, hartige versnaperingen, en donkere & blonde lekkernijen.",
+    items: [
+      { name: "High Tea", desc: "", price: "22,50", tags: [] },
+      { name: "Kids High Tea (tot 10 jaar)", desc: "Met ranja.", price: "16,95", tags: [] },
+    ],
+    info: [
+      "Maandag t/m donderdag: vanaf 14.00 uur",
+      "Vrijdag: vanaf 14.30 uur",
+      "Minimaal 2 personen · graag een dag van tevoren reserveren",
+      "Niet mogelijk in het weekend, op feestdagen of op het terras",
+    ],
+  },
+  {
     id: "specials",
     title: "Specials",
     italic: "van de week",
@@ -142,6 +158,15 @@ function MenuPage({ go }) {
                 </div>
               ))}
             </div>
+            {sec.info && (
+              <div className="reveal" style={{ marginTop: 28, background: "var(--bone)", border: "1px solid var(--line)", borderRadius: 4, padding: "20px 24px", display: "flex", flexDirection: "column", gap: 8 }}>
+                {sec.info.map((line, i) => (
+                  <span key={i} style={{ fontSize: 13, color: "var(--ink-2)", letterSpacing: "0.01em" }}>
+                    {i < 2 ? <strong style={{ color: "var(--espresso)", fontWeight: 500 }}>{line}</strong> : line}
+                  </span>
+                ))}
+              </div>
+            )}
           </section>
         ))}
       </div>

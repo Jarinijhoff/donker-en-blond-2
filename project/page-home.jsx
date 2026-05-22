@@ -25,7 +25,6 @@ function Hero({ go }) {
           </div>
         </div>
       </div>
-      <div className="hero__scroll">Scroll</div>
       <div className="hero__meta">
         <span className="dot"></span>
         <span>Nu geopend · tot 17:30</span>
