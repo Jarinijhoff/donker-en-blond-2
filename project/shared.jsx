@@ -51,11 +51,7 @@ function useScrollReveal() {
 function Logo() {
   return (
     <span className="nav__logo" aria-label="Donker en Blond">
-      <svg viewBox="0 0 192 112" className="nav__logo-svg" aria-hidden="true" focusable="false">
-        <text x="1" y="54" fontFamily="Cormorant Garamond, Georgia, serif" fontSize="54" fontWeight="500" letterSpacing="-0.5" className="logo-dark">Donker</text>
-        <line x1="1" y1="64" x2="191" y2="64" strokeWidth="1.2" className="logo-line"/>
-        <text x="191" y="104" fontFamily="Cormorant Garamond, Georgia, serif" fontSize="36" fontStyle="italic" textAnchor="end" className="logo-gold">&amp;Blond</text>
-      </svg>
+      <img src="assets/logo.png" alt="Donker &amp; Blond" className="nav__logo-img" />
     </span>
   );
 }
@@ -154,11 +150,7 @@ function Footer({ go }) {
       <div className="container">
         <div className="footer__grid">
           <div className="footer__brand">
-            <svg viewBox="0 0 192 112" className="footer__logo-svg" aria-label="Donker &amp; Blond" focusable="false">
-              <text x="1" y="54" fontFamily="Cormorant Garamond, Georgia, serif" fontSize="54" fontWeight="500" letterSpacing="-0.5" fill="var(--cream)">Donker</text>
-              <line x1="1" y1="64" x2="191" y2="64" strokeWidth="1.2" stroke="var(--blond-soft)"/>
-              <text x="191" y="104" fontFamily="Cormorant Garamond, Georgia, serif" fontSize="36" fontStyle="italic" textAnchor="end" fill="var(--blond-soft)">&amp;Blond</text>
-            </svg>
+            <img src="assets/logo.png" alt="Donker &amp; Blond" className="footer__logo-img" />
             <p>Een gezellige lunchroom in de winkelstraat Hof van den Houte in Etten-Leur. Koffie, lunch, terrassen en op vrijdag onze burgers.</p>
           </div>
           <div className="footer__col">
