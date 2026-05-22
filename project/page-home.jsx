@@ -8,20 +8,22 @@ function Hero({ go }) {
       </div>
       <div className="hero__content">
         <div className="hero__inner">
-          <h1 className="hero__title">
-            Een plek om<br/>
-            <span className="italic">te blijven</span> hangen.
-          </h1>
-          <p className="hero__sub">
-            Een gezellige lunchroom in de winkelstraat Hof van den Houte in Etten-Leur. Koffie, lekkernijen, lunch, en op vrijdag de burgers. Twee terrassen, een grote speelhoek voor de kleine gasten.
-          </p>
-          <div className="hero__ctas">
-            <a href="#/menu" onClick={(e) => { e.preventDefault(); go("menu"); }} className="btn btn--primary">
-              Bekijk de kaart <span className="arrow">→</span>
-            </a>
-            <a href="tel:+31765041234" className="btn btn--ghost">
-              Bel voor een tafel
-            </a>
+          <div className="hero__text">
+            <h1 className="hero__title">
+              Een plek om<br/>
+              <span className="italic">te blijven</span> hangen.
+            </h1>
+            <p className="hero__sub">
+              Een gezellige lunchroom in de winkelstraat Hof van den Houte in Etten-Leur. Koffie, lekkernijen, lunch, en op vrijdag de burgers. Twee terrassen, een grote speelhoek voor de kleine gasten.
+            </p>
+            <div className="hero__ctas">
+              <a href="#/menu" onClick={(e) => { e.preventDefault(); go("menu"); }} className="btn btn--primary">
+                Bekijk de kaart <span className="arrow">→</span>
+              </a>
+              <a href="tel:+31765041234" className="btn btn--ghost">
+                Bel voor een tafel
+              </a>
+            </div>
           </div>
         </div>
       </div>

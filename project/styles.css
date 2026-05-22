@@ -186,11 +186,16 @@ a { color: inherit; text-decoration: none; }
   gap: 6px;
   line-height: 1;
 }
-.nav__logo .donker { color: inherit; }
-.nav__logo .amp { color: var(--blond); font-weight: 400; }
-.nav__logo .blond { color: inherit; font-style: italic; }
-.nav--transparent .nav__logo { color: #fff; }
-.nav--solid .nav__logo { color: var(--ink); }
+.nav__logo-img {
+  height: 44px;
+  width: auto;
+  display: block;
+  mix-blend-mode: multiply;
+}
+.nav--transparent .nav__logo-img {
+  filter: brightness(0) invert(1);
+  mix-blend-mode: normal;
+}
 .nav__links {
   display: flex;
   align-items: center;
@@ -474,6 +479,13 @@ a { color: inherit; text-decoration: none; }
   font-weight: 300;
 }
 .hero__ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero__text {
+  margin-left: auto;
+  max-width: 560px;
+}
+@media (max-width: 700px) {
+  .hero__text { margin-left: 0; max-width: 100%; }
+}
 
 .hero__meta {
   position: absolute;

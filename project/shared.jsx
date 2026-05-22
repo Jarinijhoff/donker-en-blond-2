@@ -48,12 +48,10 @@ function useScrollReveal() {
 /* ============================================================
    LOGO - recreated as SVG-ish text for nav
    ============================================================ */
-function Logo({ light }) {
+function Logo() {
   return (
     <span className="nav__logo" aria-label="Donker en Blond">
-      <span className="donker">Donker</span>
-      <span className="amp">&amp;</span>
-      <span className="blond">Blond</span>
+      <img src="assets/logo.jpg" alt="Donker &amp; Blond" className="nav__logo-img" />
     </span>
   );
 }
