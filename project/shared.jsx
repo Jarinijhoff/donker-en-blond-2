@@ -9,8 +9,7 @@ const ROUTES = [
   { path: "over-ons",    label: "Over Ons",        num: "02" },
   { path: "menu",        label: "Menu",            num: "03" },
   { path: "openingstijden", label: "Openingstijden", num: "04" },
-  { path: "catering",    label: "Catering", num: "05", longLabel: "Horeca · Catering" },
-  { path: "contact",     label: "Contact",         num: "06" },
+  { path: "contact",     label: "Contact",         num: "05" },
 ];
 
 function useRoute() {
@@ -177,7 +176,6 @@ function Footer({ go }) {
             <h5>Verder kijken</h5>
             <ul>
               <li><a href="#/menu" onClick={handleClick("menu")}>Menukaart</a></li>
-              <li><a href="#/catering" onClick={handleClick("catering")}>Horeca &amp; Catering</a></li>
               <li><a href="#/over-ons" onClick={handleClick("over-ons")}>Ons verhaal</a></li>
               <li><a href="#/contact" onClick={handleClick("contact")}>Contact</a></li>
             </ul>

@@ -395,7 +395,7 @@ a { color: inherit; text-decoration: none; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 35%;
+  object-position: center 60%;
   transform: scale(1.03);
   animation: heroZoom 14s var(--ease) forwards;
 }
@@ -812,17 +812,6 @@ a { color: inherit; text-decoration: none; }
 }
 .hours__list li:last-child { border-bottom: none; }
 .hours__list li.today { color: var(--espresso); font-weight: 500; }
-.hours__list li.today::before {
-  content: "vandaag";
-  position: absolute;
-  margin-left: -56px;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--blond-deep);
-  font-weight: 500;
-  margin-top: 6px;
-}
 .hours__list .day { font-family: var(--serif); font-size: 19px; }
 .hours__list .time { font-family: var(--sans); color: var(--ink-2); font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
 .hours__list .time.closed { color: var(--muted); font-style: italic; }

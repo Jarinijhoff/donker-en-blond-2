@@ -248,12 +248,6 @@ const REVIEWS = [
     src: "TripAdvisor",
     init: "M"
   },
-  {
-    text: "Catering geregeld voor onze bedrijfslunch (40 pers.). Op tijd, prachtig opgemaakt, en collega's praten er nóg over. Aanrader.",
-    name: "Linda · Witteveen+Bos",
-    src: "Google · 5 sterren",
-    init: "L"
-  },
 ];
 
 function Reviews() {
@@ -294,7 +288,6 @@ function HomePage({ go }) {
       <Sfeer />
       <Specials go={go} />
       <HoursPreview go={go} />
-      <CateringTeaser go={go} />
       <Reviews />
     </main>
   );
