@@ -166,8 +166,8 @@ const MENU = [
       {
         title: "Tijden",
         items: [
-          { name: "Maandag t/m donderdag",                     price: "vanaf 14.00" },
-          { name: "Vrijdag",                                    price: "vanaf 14.30" },
+          { name: "Maandag t/m donderdag",  price: "vanaf 14.00 uur", noEuro: true },
+          { name: "Vrijdag",                price: "vanaf 14.30 uur", noEuro: true },
         ],
       },
     ],
@@ -263,7 +263,7 @@ function MenuPage({ go }) {
                         whiteSpace: "nowrap",
                         flexShrink: 0
                       }}>
-                        € {it.price}
+                        {it.noEuro ? it.price : `€ ${it.price}`}
                       </span>
                     </div>
                   ))}
