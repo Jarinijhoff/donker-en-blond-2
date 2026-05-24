@@ -62,6 +62,8 @@ function Logo() {
 function Navbar({ route, go, transparentAllowed }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const touchStartX = useRef(null);
+  const touchStartY = useRef(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -72,6 +74,29 @@ function Navbar({ route, go, transparentAllowed }) {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
+  }, [menuOpen]);
+
+  useEffect(() => {
+    const onTouchStart = (e) => {
+      touchStartX.current = e.touches[0].clientX;
+      touchStartY.current = e.touches[0].clientY;
+    };
+    const onTouchEnd = (e) => {
+      if (touchStartX.current === null) return;
+      const dx = e.changedTouches[0].clientX - touchStartX.current;
+      const dy = e.changedTouches[0].clientY - touchStartY.current;
+      if (Math.abs(dx) < Math.abs(dy) * 0.8) return;
+      if (!menuOpen && touchStartX.current < 32 && dx > 64) setMenuOpen(true);
+      if (menuOpen && dx < -64) setMenuOpen(false);
+      touchStartX.current = null;
+      touchStartY.current = null;
+    };
+    document.addEventListener("touchstart", onTouchStart, { passive: true });
+    document.addEventListener("touchend", onTouchEnd, { passive: true });
+    return () => {
+      document.removeEventListener("touchstart", onTouchStart);
+      document.removeEventListener("touchend", onTouchEnd);
+    };
   }, [menuOpen]);
 
   const transparent = transparentAllowed && !scrolled && !menuOpen;
@@ -180,6 +205,10 @@ function Footer({ go }) {
         </div>
         <div className="footer__bottom">
           <span>© 2026 Donker &amp; Blond · Etten-Leur</span>
+          <div className="footer__legal">
+            <a href="#/algemene-voorwaarden" onClick={handleClick("algemene-voorwaarden")}>Algemene voorwaarden</a>
+            <a href="#/cookiebeleid" onClick={handleClick("cookiebeleid")}>Cookiebeleid</a>
+          </div>
           <div className="footer__social">
             <a href="#" aria-label="Instagram">Instagram</a>
             <a href="#" aria-label="Facebook">Facebook</a>
@@ -243,9 +272,33 @@ function PageHero({ crumb, title, lead }) {
 }
 
 /* ============================================================
+   COOKIE BANNER
+   ============================================================ */
+function CookieBanner({ go }) {
+  const [visible, setVisible] = useState(() => !localStorage.getItem("cookie-consent"));
+  if (!visible) return null;
+  const accept = () => { localStorage.setItem("cookie-consent", "accepted"); setVisible(false); };
+  const decline = () => { localStorage.setItem("cookie-consent", "declined"); setVisible(false); };
+  return (
+    <div className="cookie-banner">
+      <p className="cookie-banner__text">
+        Wij gebruiken cookies om uw bezoek te verbeteren.{" "}
+        <a href="#/cookiebeleid" onClick={(e) => { e.preventDefault(); go && go("cookiebeleid"); }}>
+          Lees ons cookiebeleid
+        </a>
+      </p>
+      <div className="cookie-banner__actions">
+        <button onClick={decline} className="cookie-btn cookie-btn--ghost">Weigeren</button>
+        <button onClick={accept} className="cookie-btn cookie-btn--primary">Accepteren</button>
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
    EXPORT
    ============================================================ */
 Object.assign(window, {
   useRoute, useScrollReveal, ROUTES,
-  Logo, Navbar, Footer, Strip, SecHead, PageHero,
+  Logo, Navbar, Footer, Strip, SecHead, PageHero, CookieBanner,
 });

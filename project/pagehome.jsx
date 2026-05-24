@@ -35,7 +35,7 @@ function Hero({ go }) {
   );
 }
 
-/* ---------- Sfeer (editorial image grid + quote) ---------- */
+/* ---------- Sfeer / Ons verhaal ---------- */
 function Sfeer() {
   return (
     <section className="section sfeer">
@@ -138,97 +138,52 @@ function Specials({ go }) {
   );
 }
 
-/* ---------- Hours preview ---------- */
-function HoursPreview({ go }) {
-  const now = new Date();
-  const today = now.getDay(); // 0 = Sunday
-  const dayKeys = ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
-  const hours = {
-    "Maandag":   "11.00 - 17.30",
-    "Dinsdag":   "9.30 - 17.30",
-    "Woensdag":  "9.30 - 17.30",
-    "Donderdag": "9.30 - 17.30",
-    "Vrijdag":   "9.30 - 17.30",
-    "Zaterdag":  "9.30 - 17.00",
-    "Zondag":    "11.00 - 17.00*",
-  };
-  const days = ["Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag", "Zondag"];
-  const todayName = dayKeys[today];
+/* ---------- Instagram ---------- */
+/*
+ * Voeg hier je eigen Instagram-posts toe of vervang ze.
+ * img: pad naar afbeelding (lokaal of URL)
+ * caption: tekst die op hover verschijnt
+ * link: URL naar de Instagram-post
+ */
+const INSTAGRAM_POSTS = [
+  { img: "assets/dish-burger.jpg",    caption: "Burger-vrijdag 🍔 Elke vrijdagavond van de kaart",  link: "#" },
+  { img: "assets/dish-wafels.jpg",    caption: "Verse Luikse wafels met aardbei & slagroom 🧇",     link: "#" },
+  { img: "assets/interior-dining.jpg",caption: "Gezellig aan tafel bij Donker & Blond ☕",           link: "#" },
+  { img: "assets/dish-broodjes.jpg",  caption: "Drie luxe broodjes op een prachtig plankje 🥪",     link: "#" },
+  { img: "assets/interior-bar.jpg",   caption: "Verse koffie staat altijd klaar voor u",            link: "#" },
+  { img: "assets/team.jpg",           caption: "Ons team staat elke dag voor u klaar 💛",           link: "#" },
+];
 
+function Instagram() {
   return (
-    <section className="section hours">
+    <section className="section instagram">
       <div className="container">
-        <div className="hours__grid">
-          <div className="hours__panel reveal">
-            <div className="hours__status">
-              <span className="dot"></span>
-              <span>Nu geopend · tot 17:30</span>
-            </div>
-            <ul className="hours__list">
-              {days.map((d) => (
-                <li key={d} className={d === todayName ? "today" : ""}>
-                  <span className="day">{d}</span>
-                  <span className="time">{hours[d]}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="reveal delay-1">
-            <span className="eyebrow">Altijd welkom</span>
-            <h2 className="sec-head__title" style={{ marginTop: 14, marginBottom: 22 }}>
-              Loop binnen,<br/>
-              <span className="italic">koffie staat klaar.</span>
-            </h2>
-            <p className="lead" style={{ marginBottom: 28 }}>
-              We zijn zes dagen per week open, van vroege koffie tot late lunch. Voor groepen vanaf zes personen reserveer je eenvoudig vooraf.
-            </p>
+        <SecHead
+          eyebrow="Volg ons op Instagram"
+          title='Elke dag verse<br/><span class="italic">momenten van ons.</span>'
+          body="Een kijkje achter de schermen, nieuwe gerechten en gezellige terrasjes. Volg ons voor dagelijkse inspiratie."
+        />
+        <div className="instagram__grid">
+          {INSTAGRAM_POSTS.map((p, i) => (
             <a
-              href="#/openingstijden"
-              onClick={(e) => { e.preventDefault(); go("openingstijden"); }}
-              className="btn btn--outline"
+              key={i}
+              href={p.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="instagram__post reveal"
+              style={{ transitionDelay: `${i * 50}ms` }}
             >
-              Alle openingstijden <span className="arrow">→</span>
+              <img src={p.img} alt={p.caption} />
+              <div className="instagram__post__overlay">
+                <span className="instagram__post__caption">{p.caption}</span>
+              </div>
             </a>
-          </div>
+          ))}
         </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- Catering teaser ---------- */
-function CateringTeaser({ go }) {
-  return (
-    <section className="section catering">
-      <div className="container">
-        <div className="catering__grid">
-          <div className="catering__media reveal">
-            <img src="assets/team.jpg" alt="Catering team" />
-          </div>
-          <div className="catering__copy reveal delay-1">
-            <span className="eyebrow">Horeca &amp; Catering</span>
-            <h2 className="catering__title">
-              Lekker, <span className="italic">overal</span><br/>
-              waar u bent.
-            </h2>
-            <p>
-              Van bestuursvergadering tot bedrijfsborrel, van werklunch tot bruiloft. Wij verzorgen ambachtelijke broodjes, salades, soepen en gebak op locatie of voor afhaal.
-            </p>
-            <ul className="catering__bullets">
-              <li>Lunchbuffetten op locatie</li>
-              <li>Vergaderlunches &amp; -ontbijten</li>
-              <li>Catering voor events</li>
-              <li>Borrelplanken &amp; high tea</li>
-            </ul>
-            <a
-              href="#/catering"
-              onClick={(e) => { e.preventDefault(); go("catering"); }}
-              className="btn btn--primary"
-              style={{ background: "var(--blond)", borderColor: "var(--blond)", color: "var(--espresso-deep)" }}
-            >
-              Vraag een offerte aan <span className="arrow">→</span>
-            </a>
-          </div>
+        <div className="instagram__follow reveal">
+          <a href="#" target="_blank" rel="noopener noreferrer" className="btn btn--outline">
+            Volg @donkerenblond <span className="arrow">→</span>
+          </a>
         </div>
       </div>
     </section>
@@ -309,6 +264,97 @@ function Reviews() {
   );
 }
 
+/* ---------- Hours preview ---------- */
+function HoursPreview({ go }) {
+  const now = new Date();
+  const today = now.getDay();
+  const dayKeys = ["Zondag", "Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag"];
+  const hours = {
+    "Maandag":   "11.00 - 17.30",
+    "Dinsdag":   "9.30 - 17.30",
+    "Woensdag":  "9.30 - 17.30",
+    "Donderdag": "9.30 - 17.30",
+    "Vrijdag":   "9.30 - 17.30",
+    "Zaterdag":  "9.30 - 17.00",
+    "Zondag":    "11.00 - 17.00*",
+  };
+  const days = ["Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag", "Zondag"];
+  const todayName = dayKeys[today];
+
+  return (
+    <section className="section hours">
+      <div className="container">
+        <div className="hours__grid">
+          <div className="hours__panel reveal">
+            <div className="hours__status">
+              <span className="dot"></span>
+              <span>Nu geopend · tot 17:30</span>
+            </div>
+            <ul className="hours__list">
+              {days.map((d) => (
+                <li key={d} className={d === todayName ? "today" : ""}>
+                  <span className="day">{d}</span>
+                  <span className="time">{hours[d]}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="reveal delay-1">
+            <span className="eyebrow">Altijd welkom</span>
+            <h2 className="sec-head__title" style={{ marginTop: 14, marginBottom: 22 }}>
+              Loop binnen,<br/>
+              <span className="italic">koffie staat klaar.</span>
+            </h2>
+            <p className="lead" style={{ marginBottom: 28 }}>
+              We zijn zes dagen per week open, van vroege koffie tot late lunch. Voor groepen vanaf zes personen reserveer je eenvoudig vooraf.
+            </p>
+            <a
+              href="#/openingstijden"
+              onClick={(e) => { e.preventDefault(); go("openingstijden"); }}
+              className="btn btn--outline"
+            >
+              Alle openingstijden <span className="arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Contact CTA ---------- */
+function ContactCTA({ go }) {
+  return (
+    <section className="section contact-cta-section">
+      <div className="container">
+        <div className="contact-cta__inner reveal">
+          <span className="eyebrow">Kom langs</span>
+          <h2>
+            Reserveer een tafel<br/>
+            <span className="italic">of loop gewoon binnen.</span>
+          </h2>
+          <p>
+            Als kleinere zaak houden we het persoonlijk. Bel ons tijdens openingstijden voor een tafel, een High‑Tea of burger‑vrijdag. U bent altijd van harte welkom.
+          </p>
+          <div className="contact-cta__btns">
+            <a href="tel:+31765041234" className="btn btn--ghost">
+              Bel 076 - 504 12 34 <span className="arrow">→</span>
+            </a>
+            <a
+              href="#/contact"
+              onClick={(e) => { e.preventDefault(); go("contact"); }}
+              className="btn btn--outline"
+              style={{ color: "var(--blond-soft)", borderColor: "rgba(250,246,239,0.35)" }}
+            >
+              Route &amp; info <span className="arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* ---------- HOME ---------- */
 function HomePage({ go }) {
   return (
@@ -317,8 +363,10 @@ function HomePage({ go }) {
       <Strip items={["Koffie & lekkernijen", "Verse lunch", "Twee terrassen", "Burger-vrijdag", "Speelhoek voor de kids", "Gezellige High-Tea"]} />
       <Sfeer />
       <Specials go={go} />
-      <HoursPreview go={go} />
+      <Instagram />
       <Reviews />
+      <HoursPreview go={go} />
+      <ContactCTA go={go} />
     </main>
   );
 }
