@@ -128,7 +128,6 @@ function Navbar({ route, go, transparentAllowed }) {
               className="menu-overlay__link"
             >
               <span>{r.longLabel || r.label}</span>
-              <span className="num">{r.num}</span>
             </a>
           ))}
         </div>
