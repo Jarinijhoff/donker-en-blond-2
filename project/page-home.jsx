@@ -252,6 +252,23 @@ const REVIEWS = [
 ];
 
 function Reviews() {
+  const [activeIdx, setActiveIdx] = React.useState(0);
+  const trackRef = React.useRef(null);
+
+  const handleScroll = () => {
+    const el = trackRef.current;
+    if (!el || !el.firstElementChild) return;
+    const cardW = el.firstElementChild.offsetWidth + 16;
+    setActiveIdx(Math.round(el.scrollLeft / cardW));
+  };
+
+  const scrollToIdx = (idx) => {
+    const el = trackRef.current;
+    if (!el || !el.firstElementChild) return;
+    const cardW = el.firstElementChild.offsetWidth + 16;
+    el.scrollTo({ left: idx * cardW, behavior: "smooth" });
+  };
+
   return (
     <section className="section reviews">
       <div className="container">
@@ -260,20 +277,32 @@ function Reviews() {
           title='Onze mooiste recensies<br/><span class="italic">komen van de buren.</span>'
           body="Een gemiddelde van 4,8 sterren op Google, en bijna 1.200 enthousiaste reacties. Hier een paar die ons aan het hart gaan."
         />
-        <div className="reviews__grid">
-          {REVIEWS.map((r, i) => (
-            <article key={i} className="review reveal" style={{ transitionDelay: `${i * 80}ms` }}>
-              <div className="review__stars">★ ★ ★ ★ ★</div>
-              <p className="review__text">"{r.text}"</p>
-              <div className="review__foot">
-                <div className="review__avatar">{r.init}</div>
-                <div className="review__meta">
-                  <span className="review__name">{r.name}</span>
-                  <span className="review__src">{r.src}</span>
+        <div className="reviews__scroll-wrap">
+          <div className="reviews__grid" ref={trackRef} onScroll={handleScroll}>
+            {REVIEWS.map((r, i) => (
+              <article key={i} className="review reveal" style={{ transitionDelay: `${i * 80}ms` }}>
+                <div className="review__stars">★ ★ ★ ★ ★</div>
+                <p className="review__text">"{r.text}"</p>
+                <div className="review__foot">
+                  <div className="review__avatar">{r.init}</div>
+                  <div className="review__meta">
+                    <span className="review__name">{r.name}</span>
+                    <span className="review__src">{r.src}</span>
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            ))}
+          </div>
+          <div className="reviews__dots">
+            {REVIEWS.map((_, i) => (
+              <button
+                key={i}
+                className={"reviews__dot" + (i === activeIdx ? " active" : "")}
+                onClick={() => scrollToIdx(i)}
+                aria-label={`Recensie ${i + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
