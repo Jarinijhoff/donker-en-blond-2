@@ -38,29 +38,24 @@ function Hero({ go }) {
 /* ---------- Sfeer / Ons verhaal ---------- */
 function Sfeer() {
   return (
-    <section className="section sfeer">
-      <div className="container">
-        <SecHead
-          eyebrow="Onze plek"
-          title='Warm hout, zacht licht,<br/><span class="italic">en de geur van vers brood.</span>'
-          body="Een eigentijdse lunchroom met een frisse, trendy inrichting. Voor een breed publiek toegankelijk. Loop binnen voor koffie, blijf voor een lange tafel met vrienden."
-        />
-        <div className="sfeer__grid">
-          <div className="sfeer__cell sfeer__cell--a reveal">
-            <img src="assets/interior-dining.jpg" alt="Eetzaal Donker & Blond met houten tafels en cork-pendants" />
-          </div>
-          <div className="sfeer__cell sfeer__cell--b reveal delay-1">
-            <img src="assets/interior-bar.jpg" alt="Barfront met espressomachine en signing" />
-          </div>
-          <div className="sfeer__cell sfeer__cell--quote reveal delay-2">
-            <div className="mark">"</div>
-            <p>Het voelt elke keer alsof we thuiskomen, bij de buren die de allerbeste koffie zetten.</p>
-            <div className="cite">Maaike, vaste gast sinds 2014</div>
-          </div>
-          <div className="sfeer__cell sfeer__cell--c reveal delay-1">
-            <img src="assets/team.jpg" alt="Het team van Donker & Blond" />
-          </div>
-        </div>
+    <section className="sfeer-split">
+      <div className="sfeer-split__photo reveal">
+        <img src="assets/interior-dining.jpg" alt="Eetzaal Donker & Blond met houten tafels en warm licht" />
+      </div>
+      <div className="sfeer-split__text reveal delay-1">
+        <span className="eyebrow">Onze plek</span>
+        <h2 className="sfeer-split__title">
+          Warm hout, zacht licht,<br/>
+          <span className="italic">en de geur van vers brood.</span>
+        </h2>
+        <p className="sfeer-split__body">
+          Een eigentijdse lunchroom met een frisse, trendy inrichting. Voor een breed publiek toegankelijk. Loop binnen voor koffie, blijf voor een lange tafel met vrienden.
+        </p>
+        <blockquote className="sfeer-split__quote">
+          <div className="sfeer-split__quote-mark">"</div>
+          <p>Het voelt elke keer alsof we thuiskomen, bij de buren die de allerbeste koffie zetten.</p>
+          <cite>Maaike, vaste gast sinds 2014</cite>
+        </blockquote>
       </div>
     </section>
   );
@@ -146,12 +141,9 @@ function Specials({ go }) {
  * link: URL naar de Instagram-post
  */
 const INSTAGRAM_POSTS = [
-  { img: "assets/dish-burger.jpg",    caption: "Burger-vrijdag 🍔 Elke vrijdagavond van de kaart",  link: "#" },
-  { img: "assets/dish-wafels.jpg",    caption: "Verse Luikse wafels met aardbei & slagroom 🧇",     link: "#" },
-  { img: "assets/interior-dining.jpg",caption: "Gezellig aan tafel bij Donker & Blond ☕",           link: "#" },
-  { img: "assets/dish-broodjes.jpg",  caption: "Drie luxe broodjes op een prachtig plankje 🥪",     link: "#" },
-  { img: "assets/interior-bar.jpg",   caption: "Verse koffie staat altijd klaar voor u",            link: "#" },
-  { img: "assets/team.jpg",           caption: "Ons team staat elke dag voor u klaar 💛",           link: "#" },
+  { img: "uploads/image(71).jpg", caption: "Voeg hier je caption toe", link: "#" },
+  { img: "uploads/image(72).jpg", caption: "Voeg hier je caption toe", link: "#" },
+  { img: "uploads/image(73).jpg", caption: "Voeg hier je caption toe", link: "#" },
 ];
 
 function Instagram() {
@@ -363,8 +355,8 @@ function HomePage({ go }) {
       <Strip items={["Koffie & lekkernijen", "Verse lunch", "Twee terrassen", "Burger-vrijdag", "Speelhoek voor de kids", "Gezellige High-Tea"]} />
       <Sfeer />
       <Specials go={go} />
-      <Instagram />
       <Reviews />
+      <Instagram />
       <HoursPreview go={go} />
       <ContactCTA go={go} />
     </main>
