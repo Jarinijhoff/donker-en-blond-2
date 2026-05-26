@@ -35,27 +35,43 @@ function Hero({ go }) {
   );
 }
 
-/* ---------- Sfeer / Ons verhaal ---------- */
+/* ---------- Sfeer / foto-slider ---------- */
+const SFEER_SLIDES = [
+  { img: "assets/interior-bar.jpg",    alt: "De bar van Donker & Blond" },
+  { img: "assets/interior-dining.jpg", alt: "De eetzaal van Donker & Blond" },
+];
+
 function Sfeer() {
+  const [idx, setIdx] = React.useState(0);
+  const prev = () => setIdx((i) => (i - 1 + SFEER_SLIDES.length) % SFEER_SLIDES.length);
+  const next = () => setIdx((i) => (i + 1) % SFEER_SLIDES.length);
+
   return (
-    <section className="sfeer-split">
-      <div className="sfeer-split__photo reveal">
-        <img src="assets/interior-dining.jpg" alt="Eetzaal Donker & Blond met houten tafels en warm licht" />
-      </div>
-      <div className="sfeer-split__text reveal delay-1">
+    <section className="sfeer-slider">
+      <div className="sfeer-slider__head">
         <span className="eyebrow">Onze plek</span>
-        <h2 className="sfeer-split__title">
-          Warm hout, zacht licht,<br/>
-          <span className="italic">en de geur van vers brood.</span>
-        </h2>
-        <p className="sfeer-split__body">
-          Een eigentijdse lunchroom met een frisse, trendy inrichting. Voor een breed publiek toegankelijk. Loop binnen voor koffie, blijf voor een lange tafel met vrienden.
+        <p className="sfeer-slider__tagline">
+          Warm hout, zacht licht, <span className="italic">en de geur van vers brood.</span>
         </p>
-        <blockquote className="sfeer-split__quote">
-          <div className="sfeer-split__quote-mark">"</div>
-          <p>Het voelt elke keer alsof we thuiskomen, bij de buren die de allerbeste koffie zetten.</p>
-          <cite>Maaike, vaste gast sinds 2014</cite>
-        </blockquote>
+      </div>
+      <div className="sfeer-slider__stage">
+        {SFEER_SLIDES.map((s, i) => (
+          <div key={i} className={"sfeer-slider__slide" + (i === idx ? " active" : "")}>
+            <img src={s.img} alt={s.alt} />
+          </div>
+        ))}
+        <button className="sfeer-slider__btn sfeer-slider__btn--prev" onClick={prev} aria-label="Vorige foto">←</button>
+        <button className="sfeer-slider__btn sfeer-slider__btn--next" onClick={next} aria-label="Volgende foto">→</button>
+        <div className="sfeer-slider__dots">
+          {SFEER_SLIDES.map((_, i) => (
+            <button
+              key={i}
+              className={"sfeer-slider__dot" + (i === idx ? " active" : "")}
+              onClick={() => setIdx(i)}
+              aria-label={`Foto ${i + 1}`}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -141,9 +157,9 @@ function Specials({ go }) {
  * link: URL naar de Instagram-post
  */
 const INSTAGRAM_POSTS = [
-  { img: "uploads/image(71).jpg", caption: "Voeg hier je caption toe", link: "#" },
-  { img: "uploads/image(72).jpg", caption: "Voeg hier je caption toe", link: "#" },
-  { img: "uploads/image(73).jpg", caption: "Voeg hier je caption toe", link: "#" },
+  { img: "uploads/Schermafbeelding 2026-05-26 093836.png", caption: "Volg ons op Instagram voor dagelijkse inspiratie", link: "#" },
+  { img: "uploads/Schermafbeelding 2026-05-26 093925.png", caption: "Volg ons op Instagram voor dagelijkse inspiratie", link: "#" },
+  { img: "uploads/Schermafbeelding 2026-05-26 093934.png", caption: "Volg ons op Instagram voor dagelijkse inspiratie", link: "#" },
 ];
 
 function Instagram() {
